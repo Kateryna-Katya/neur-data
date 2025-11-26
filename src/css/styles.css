@@ -1,15 +1,1036 @@
-/**
-  |============================
-  | include css partials with
-  | default @import url()
-  |============================
-*/
-/* Common styles */
-@import url('./reset.css');
-@import url('./base.css');
-@import url('./container.css');
+/* ==========================================================================
+   0. Глобальные стили и переменные (НЕОНОВАЯ ТЕМА - Тень ослаблена)
+   ========================================================================== */
+   :root {
+    /* Цвета */
+    --color-primary: #39FF14; /* Неоновый Салатовый (Текст, Главный Акцент) */
+    --color-secondary: #FF6600; /* Яркий Оранжевый (CTA, Дополнительный Акцент) */
+    --color-background: #000000; /* Чистый Черный Фон */
+    --color-text: #39FF14; /* Салатовый текст */
+    --color-neutral: #111111; /* Очень темный серый (Фон карточек/Хедера) */
+    --color-white: #ffffff;
 
-/* Sections style */
-@import url('./header.css');
-@import url('./main.css');
-@import url('./footer.css');
+    /* Шрифты */
+    --font-heading: 'Orbitron', sans-serif;
+    --font-body: 'Roboto Mono', monospace;
+
+    /* Отступы */
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    /* Тень для неонового эффекта (ОСЛАБЛЕНО) */
+    --shadow-neon-sm: 0 0 2px var(--color-primary), 0 0 5px rgba(57, 255, 20, 0.4);
+    --shadow-neon-md: 0 0 7px var(--color-primary), 0 0 15px rgba(57, 255, 20, 0.6);
+}
+
+/* Сброс стилей */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Базовые стили body (Mobile-First) */
+body {
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.8;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    -webkit-font-smoothing: antialiased;
+    scroll-behavior: smooth;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Стили для ссылок и заголовков */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all var(--transition-speed);
+}
+
+a:hover {
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px var(--color-secondary);
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+    color: var(--color-text);
+    text-shadow: var(--shadow-neon-sm); /* Применена ослабленная тень */
+}
+
+.main {
+    flex-grow: 1;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+/* ==========================================================================
+   1. Стили для Кнопок (Неоновый эффект)
+   ========================================================================== */
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--color-primary);
+    border-radius: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: all var(--transition-speed);
+    box-shadow: 0 0 7px rgba(57, 255, 20, 0.5); /* Базовая тень кнопки */
+}
+
+.button--primary {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    border-color: var(--color-primary);
+}
+
+.button--primary:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 10px var(--color-secondary), 0 0 20px rgba(255, 102, 0, 0.7);
+    transform: translateY(-2px);
+}
+
+.button--secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.button--secondary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-background);
+    box-shadow: var(--shadow-neon-md);
+    transform: translateY(-2px);
+}
+
+.button--small {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+}
+
+/* ==========================================================================
+   2. Стили для Логотипа
+   ========================================================================== */
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.logo:hover {
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px var(--color-secondary);
+}
+
+/* ==========================================================================
+   3. Стили для Header (Этап 1)
+   ========================================================================== */
+.header {
+    background-color: var(--color-neutral);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--color-primary);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(57, 255, 20, 0.3);
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__burger {
+    display: block;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-primary);
+    padding: 0.5rem;
+}
+
+.header__burger svg {
+    width: 28px;
+    height: 28px;
+    filter: drop-shadow(0 0 4px var(--color-primary));
+}
+
+.header__nav {
+    display: none;
+}
+
+/* Навигационное меню (мобильное/планшетное) */
+.nav__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: var(--space-sm);
+    background-color: var(--color-neutral);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    border-top: 1px solid var(--color-primary);
+    box-shadow: 0 4px 15px rgba(57, 255, 20, 0.4);
+}
+
+.nav__link {
+    font-weight: 500;
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+.nav__link:hover {
+    color: var(--color-secondary);
+    text-shadow: 0 0 3px var(--color-secondary);
+}
+
+/* Стилизация CTA кнопки в меню */
+.nav__link--cta {
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    border-color: var(--color-secondary);
+    box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.header__nav.is-open {
+    display: block;
+}
+
+/* Десктопная версия (>= 768px) */
+@media (min-width: 768px) {
+    .header__burger {
+        display: none;
+    }
+
+    .header__nav {
+        display: block;
+        position: static;
+    }
+
+    .nav__list {
+        position: static;
+        flex-direction: row;
+        align-items: center;
+        width: auto;
+        padding: 0;
+        border: none;
+        box-shadow: none;
+        gap: 1.5rem;
+    }
+}
+
+
+/* ==========================================================================
+   4. Стили для Footer (Этап 2)
+   ========================================================================== */
+.footer {
+    background-color: var(--color-neutral);
+    color: var(--color-text);
+    padding-top: var(--space-lg);
+    flex-shrink: 0;
+    border-top: 2px solid var(--color-primary);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.2);
+}
+
+.footer__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-md);
+}
+
+.footer__logo {
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px var(--color-secondary);
+}
+
+.footer__text {
+    margin-top: 1rem;
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+.footer__legal-note {
+    color: rgba(57, 255, 20, 0.5);
+}
+
+.footer__heading {
+    color: var(--color-primary);
+    text-shadow: var(--shadow-neon-sm);
+}
+
+.footer__link {
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+.footer__contact-item svg {
+    color: var(--color-secondary);
+    filter: drop-shadow(0 0 3px var(--color-secondary));
+}
+
+.footer__address {
+    color: var(--color-text);
+}
+
+/* Нижняя часть футера (Копирайт) */
+.footer__bottom {
+    border-top: 1px solid rgba(57, 255, 20, 0.2);
+    padding: 1rem var(--space-sm);
+}
+
+.footer__copy {
+    color: rgba(57, 255, 20, 0.5);
+}
+
+
+/* Десктопная версия (>= 768px) */
+@media (min-width: 768px) {
+    .footer__container {
+        grid-template-columns: 2fr 1.5fr 1.5fr 2fr;
+        gap: var(--space-md);
+        padding: 0 var(--space-md) var(--space-md);
+    }
+}
+
+
+/* ==========================================================================
+   5. Стилізація сторінок політик (Этап 5 - для читабельности)
+   ========================================================================== */
+.main--policy {
+    padding: var(--space-lg) 0;
+    background-color: var(--color-background);
+}
+
+.policy__content {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-md);
+    background-color: var(--color-neutral);
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    box-shadow: var(--shadow-neon-md);
+    color: var(--color-text);
+}
+
+.policy__content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-secondary);
+    padding-bottom: 0.5rem;
+    text-shadow: var(--shadow-neon-sm);
+}
+
+.policy__content h2,
+.policy__content h3 {
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px rgba(255, 102, 0, 0.5);
+}
+
+.policy__content p,
+.policy__content ul {
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+.policy__content strong {
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.policy__content a {
+    color: var(--color-secondary);
+    text-decoration: none;
+    text-shadow: 0 0 3px var(--color-secondary);
+}
+
+/* ==========================================================================
+   6. Cookie Pop-up (Этап 5 - Стили)
+   ========================================================================== */
+.cookie-popup {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: var(--space-md) var(--space-sm);
+    background-color: var(--color-neutral);
+    color: var(--color-text);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: transform 0.4s ease-out;
+    transform: translateY(0);
+    border-top: 1px solid var(--color-primary);
+    box-shadow: 0 0 10px rgba(57, 255, 20, 0.4);
+}
+
+.cookie-popup.is-hidden {
+    transform: translateY(100%);
+}
+
+.cookie-popup__text {
+    color: var(--color-text);
+    text-shadow: none;
+}
+
+.cookie-popup__link {
+    color: var(--color-secondary);
+}
+
+.cookie-popup__button {
+    box-shadow: 0 0 5px var(--color-primary);
+}
+
+@media (min-width: 768px) {
+    .cookie-popup {
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 1rem var(--space-md);
+    }
+}
+
+/* ==========================================================================
+   7. Стили для Hero-Секции (Этап 3.1)
+   ========================================================================== */
+   .hero {
+    position: relative;
+    width: 100%;
+    height: 90vh;
+    min-height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: var(--color-text);
+    text-align: center;
+    background-color: var(--color-background);
+}
+
+.hero__canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0.25; /* Приглушаем, чтобы не мешало тексту */
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2; /* Контент поверх анимации */
+    max-width: 1000px;
+    padding: var(--space-md);
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачная подложка */
+    border-radius: 0;
+    border: 1px solid var(--color-primary);
+    box-shadow: var(--shadow-neon-md); /* Неоновая тень вокруг контента */
+}
+
+.hero__title {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    margin-bottom: 1rem;
+    color: var(--color-text);
+    text-shadow: 0 0 5px var(--color-primary), 0 0 15px rgba(57, 255, 20, 0.7); /* Усиленная тень */
+}
+
+.hero__highlight {
+    display: block;
+    color: var(--color-secondary); /* Оранжевый акцент */
+    text-shadow: 0 0 5px var(--color-secondary), 0 0 15px rgba(255, 102, 0, 0.7);
+}
+
+.hero__text {
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    color: var(--color-text);
+    text-shadow: var(--shadow-neon-sm);
+    opacity: 0.9;
+}
+
+.hero__actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+/* Анимация (Скрываем элементы для JS-появления) */
+.content-animate {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+.content-animate[data-animation="fade-in"] { /* Для Hero, чтобы не было смещения */
+    transform: none;
+    transition: opacity 1.5s ease-out;
+}
+.content-animate.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* Десктопная версия */
+@media (min-width: 768px) {
+    .hero__highlight {
+        display: inline;
+    }
+    .hero__actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+}
+/* ==========================================================================
+   8. Стили для Секции "Методология" (Этап 3.2)
+   ========================================================================== */
+   .method {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-background);
+}
+
+.method__heading {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.method__subtext {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+}
+
+.method__steps {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+/* Стили для карточки Шага */
+.method__item {
+    position: relative;
+    background-color: var(--color-neutral); /* Темный фон карточки */
+    padding: var(--space-md);
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    box-shadow: var(--shadow-neon-sm);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.method__item:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-neon-md);
+}
+
+/* Индикатор номера шага */
+.method__step-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.5rem 1rem;
+    background-color: var(--color-secondary); /* Оранжевый фон */
+    color: var(--color-background); /* Черный текст */
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 20% 50%); /* Декоративный срез */
+    box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.method__title {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.method__description {
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+/* Десктопная версия (>= 768px) */
+@media (min-width: 768px) {
+    .method__steps {
+        flex-direction: row;
+        gap: var(--space-md);
+    }
+}
+/* ==========================================================================
+   9. Стили для Секции "Консультации" (Этап 3.3)
+   ========================================================================== */
+   .consult {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-background);
+    overflow: hidden;
+}
+
+.consult__heading {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.consult__subtext {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    text-align: center;
+    font-family: var(--font-body);
+}
+
+.consult__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Стили для карточки Консультации */
+.consult-card {
+    background-color: var(--color-neutral); /* Темный фон карточки */
+    padding: var(--space-md);
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    box-shadow: var(--shadow-neon-sm);
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+
+}
+
+.consult-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-neon-md);
+}
+
+/* Стили для рекомендуемой карточки */
+.consult-card--featured {
+    border: 2px solid var(--color-secondary);
+    background-color: var(--color-neutral);
+    box-shadow: 0 0 15px var(--color-secondary); /* Оранжевый акцент */
+}
+
+.consult-card__tag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: var(--color-secondary);
+    color: var(--color-background);
+    padding: 0.25rem 1rem;
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+    box-shadow: 0 0 5px var(--color-secondary);
+}
+
+.consult-card__title {
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-shadow: 0 0 3px var(--color-primary);
+}
+
+.consult-card__price-value {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--color-secondary);
+    font-family: var(--font-heading);
+    margin-bottom: 1.5rem;
+    display: block;
+    text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+}
+
+.consult-card__features {
+    list-style: none;
+    padding: 0;
+    margin-bottom: var(--space-md);
+}
+
+.consult-card__features li {
+    padding: 0.5rem 0;
+    border-bottom: 1px dashed rgba(57, 255, 20, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+}
+
+.consult-card__features li svg {
+    width: 20px;
+    height: 20px;
+    margin-right: 0.5rem;
+    color: var(--color-primary);
+    filter: drop-shadow(0 0 2px var(--color-primary));
+}
+
+/* Десктопная версия (>= 992px) */
+@media (min-width: 992px) {
+    .consult__grid {
+        flex-direction: row;
+        gap: var(--space-md);
+    }
+    .consult-card {
+      min-width: 310px;
+    }
+}
+/* ==========================================================================
+   10. Стили для Секции "Результаты" (Этап 3.4)
+   ========================================================================== */
+   .results {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    background-color: var(--color-neutral); /* Темный фон для контраста */
+    overflow: hidden;
+    border-top: 1px solid var(--color-primary); /* Разделительная линия */
+}
+
+.results__heading {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+.results__subtext {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    font-family: var(--font-body);
+}
+
+.results__grid {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* Стили для блока Метрики */
+.metric-block {
+    background-color: var(--color-background); /* Черный фон */
+    padding: var(--space-lg) var(--space-md);
+    border: 1px solid var(--color-secondary);
+    border-radius: 0;
+    box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); /* Оранжевый акцент */
+    transition: all 0.3s ease;
+    text-shadow: none;
+}
+
+.metric-block:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px var(--color-primary), 0 0 25px rgba(57, 255, 20, 0.7); /* Салатовый акцент при наведении */
+}
+
+.metric-block__value {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 8vw, 4.5rem);
+    font-weight: 800;
+    color: var(--color-primary);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    text-shadow: var(--shadow-neon-sm); /* Неоновый эффект для чисел */
+}
+
+.metric-block__label {
+    font-size: 1rem;
+    color: var(--color-secondary);
+    text-transform: uppercase;
+    text-shadow: 0 0 3px var(--color-secondary);
+    margin-top: 10px;
+}
+
+/* Десктопная версия (>= 992px) */
+@media (min-width: 992px) {
+    .results__grid {
+        flex-direction: row;
+        justify-content: space-around;
+        gap: var(--space-lg);
+    }
+    .metric-block {
+      min-width: 300px;
+    }
+}
+/* ==========================================================================
+   11. Стили для Секции "Онлайн Тест" (Этап 3.5)
+   ========================================================================== */
+   .test {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    background-color: var(--color-background);
+    overflow: hidden;
+    border-top: 1px solid var(--color-secondary); /* Разделительная линия */
+}
+
+.test__heading {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin-bottom: 0.5rem;
+    color: var(--color-primary);
+}
+
+.test__subtext {
+    font-size: 1.1rem;
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-family: var(--font-body);
+}
+
+.test__button {
+    font-size: 1.25rem;
+    padding: 1rem 2.5rem;
+    min-width: 300px;
+    display: inline-flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+.test__button svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+.test__button:hover svg {
+    transform: translateX(5px);
+}
+
+
+/* --- Анимация Пульсирующей Кнопки --- */
+@keyframes neon-pulse {
+    0% {
+        box-shadow: 0 0 5px var(--color-primary), 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 10px var(--color-primary), 0 0 25px rgba(57, 255, 20, 0.7);
+    }
+    100% {
+        box-shadow: 0 0 5px var(--color-primary), 0 0 10px rgba(57, 255, 20, 0.4);
+    }
+}
+
+.pulsate-neon {
+    animation: neon-pulse 1.5s infinite alternate ease-in-out;
+}
+
+/* ==========================================================================
+   12. Стили для Секции Контактов (Contact) (Этап 4)
+   ========================================================================== */
+   .contact {
+    padding: var(--space-xl) 0;
+    text-align: center;
+    background-color: var(--color-background); /* Черный фон */
+    overflow: hidden;
+}
+
+.contact__heading {
+    font-size: clamp(2rem, 5vw, 3.8rem);
+    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+}
+
+.contact__subtext {
+    font-size: 1.15rem;
+    color: var(--color-text);
+    text-shadow: none;
+    opacity: 0.8;
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    font-family: var(--font-body);
+}
+
+.contact-form {
+    max-width: 550px;
+    margin: 0 auto;
+    padding: var(--space-md);
+    background-color: var(--color-neutral); /* Темный фон формы */
+    border-radius: 0;
+    border: 1px solid var(--color-primary);
+    box-shadow: var(--shadow-neon-md);
+}
+
+.form-group {
+    margin-bottom: var(--space-md);
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+}
+
+/* Стили для полей ввода */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--color-primary); /* Неоновый бордер */
+    border-radius: 0;
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-background); /* Черный фон для полей */
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: var(--color-secondary);
+    outline: none;
+    box-shadow: 0 0 5px var(--color-secondary), 0 0 15px rgba(255, 102, 0, 0.6); /* Оранжевое свечение при фокусе */
+}
+
+/* CAPTCHA Styles */
+.captcha-group {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-sm);
+    border-top: 1px dashed var(--color-primary);
+}
+
+.captcha-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color: var(--color-background);
+    padding: 0.75rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    box-shadow: 0 0 5px rgba(57, 255, 20, 0.5);
+}
+
+.captcha-box__display {
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    color: var(--color-secondary);
+    text-shadow: 0 0 5px var(--color-secondary);
+    padding: 0 0.5rem;
+    min-width: 100px;
+    text-align: center;
+}
+
+.captcha-box input {
+    flex-grow: 1;
+    color: var(--color-text);
+    background-color: var(--color-neutral);
+    border: 1px solid var(--color-neutral);
+}
+
+.captcha-message {
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    height: 1.2rem;
+}
+
+/* Стили для Чекбокса Конфиденциальности */
+.form-group--checkbox {
+    display: flex;
+    align-items: flex-start;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.form-group--checkbox input[type="checkbox"] {
+    margin-top: 5px;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    margin-right: 0.75rem;
+    border: 1px solid var(--color-primary);
+    background-color: var(--color-background);
+    appearance: none;
+    border-radius: 0;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 3px var(--color-primary);
+}
+
+.form-group--checkbox input[type="checkbox"]:checked {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+    box-shadow: 0 0 5px var(--color-primary);
+}
+
+.form-group--checkbox input[type="checkbox"]:checked::after {
+    content: '\2713';
+    font-size: 14px;
+    color: var(--color-background);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1;
+}
+
+.checkbox-label {
+    font-size: 0.95rem;
+    font-weight: 400;
+    cursor: pointer;
+    color: var(--color-text);
+}
+
+.checkbox-label a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-secondary);
+    text-shadow: 0 0 3px var(--color-secondary);
+}
+
+/* Submission Message */
+.submission-message {
+    margin-top: var(--space-md);
+    padding: var(--space-sm);
+    background-color: rgba(57, 255, 20, 0.2);
+    color: var(--color-primary);
+    border: 1px solid var(--color-primary);
+    border-radius: 0;
+    font-weight: 600;
+    box-shadow: var(--shadow-neon-sm);
+}
