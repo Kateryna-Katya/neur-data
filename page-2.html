@@ -5,29 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Page 2</title>
-    <link rel="stylesheet" crossorigin href="/test/assets/styles-X9THPhCB.css">
+    <link rel="stylesheet" crossorigin href="/neur-data/assets/styles-DhhWXTKx.css">
   </head>
   <body>
     <header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html" aria-label="Site logo">
-        <svg class="nav-logo-icon" width="100" height="30">
-          <use href="{=$icon-path}"></use>
-        </svg>
-      </a>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="header__container container">
+      <a href="#hero" class="header__logo logo">Neur-Data</a>
+
+      <nav class="header__nav nav">
+          <ul class="nav__list">
+              <li class="nav__item"><a href="#hero" class="nav__link">Главная</a></li>
+              <li class="nav__item"><a href="#method" class="nav__link">Методология</a></li>
+              <li class="nav__item"><a href="#consult" class="nav__link">Консультации</a></li>
+              <li class="nav__item"><a href="#results" class="nav__link">Результаты</a></li>
+              <li class="nav__item"><a href="#test" class="nav__link">Онлайн Тест</a></li>
+              <li class="nav__item"><a href="#contact" class="nav__link nav__link--cta button--small">Связаться</a></li>
+          </ul>
+      </nav>
+      <button class="header__burger" id="menuToggle" aria-label="Открыть меню">
+          <i data-lucide="menu"></i>
+      </button>
   </div>
 </header>
-
 
     <main>
       <div class="container">
@@ -38,20 +37,64 @@
     </main>
 
     <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
+  <div class="footer__container container">
+
+      <div class="footer__col footer__col--brand">
+          <a href="./#hero" class="footer__logo logo">Neur-Data</a>
+          <p class="footer__text">
+              **Технология нового поколения** для Вашего карьерного роста. Мы — **проверенный партнер**.
+          </p>
+          <p class="footer__legal-note">
+              *Предложение активно только в странах ЕС
+          </p>
+      </div>
+
+      <div class="footer__col footer__col--nav">
+          <h3 class="footer__heading">Навигация</h3>
+          <ul class="footer__list">
+              <li><a href="./#hero" class="footer__link">Главная</a></li>
+              <li><a href="./#method" class="footer__link">Методология</a></li>
+              <li><a href="./#consult" class="footer__link">Консультации</a></li>
+              <li><a href="./#results" class="footer__link">Результаты</a></li>
+              <li><a href="./#test" class="footer__link">Онлайн Тест</a></li>
+              <li><a href="./#contact" class="footer__link">Связаться</a></li>
+          </ul>
+      </div>
+
+      <div class="footer__col footer__col--legal">
+          <h3 class="footer__heading">Документы</h3>
+          <ul class="footer__list">
+              <li><a href="./privacy.html" class="footer__link">Политика конфиденциальности</a></li>
+              <li><a href="./cookies.html" class="footer__link">Политика Cookies</a></li>
+              <li><a href="./terms.html" class="footer__link">Условия использования</a></li>
+              <li><a href="./return.html" class="footer__link">Политика возврата</a></li>
+              <li><a href="./disclaimer.html" class="footer__link">Отказ от ответственности</a></li>
+              <li><a href="./personal-data-policy.html" class="footer__link">Политика обработки данных</a></li>
+          </ul>
+      </div>
+
+      <div class="footer__col footer__col--contacts">
+          <h3 class="footer__heading">Контакты</h3>
+          <ul class="footer__list">
+              <li class="footer__contact-item">
+                  <i data-lucide="phone"></i>
+                  <a href="tel:+442089456789" class="footer__link">+44 20 8945 6789</a>
+              </li>
+              <li class="footer__contact-item">
+                  <i data-lucide="mail"></i>
+                  <a href="mailto:career@neur-data.today" class="footer__link">career@neur-data.today</a>
+              </li>
+              <li class="footer__contact-item">
+                  <i data-lucide="map-pin"></i>
+                  <address class="footer__address">20 Fenchurch Street, London EC3M 3BY, UK</address>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+  <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 Neur-Data. Все права защищены. Платформа года.</p>
   </div>
 </footer>
-
   </body>
 </html>

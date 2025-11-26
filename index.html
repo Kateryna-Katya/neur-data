@@ -1,56 +1,344 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/test/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vanilla App Template</title>
-    <script type="module" crossorigin src="/test/index.js"></script>
-    <link rel="stylesheet" crossorigin href="/test/assets/styles-X9THPhCB.css">
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neur-Data | Карьерный Апгрейд | Технология нового поколения</title>
+    <meta name="description" content="Neur-Data — Ваш проверенный партнер в карьерном росте. Инновационная технология для воплощения мечты в реальность.">
+
+    <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="/neur-data/index.js"></script>
+    <link rel="stylesheet" crossorigin href="/neur-data/assets/styles-DhhWXTKx.css">
   </head>
   <body>
     <header class="header">
-  <div class="container">
-    <nav class="nav">
-      <a class="nav-logo" href="./index.html" aria-label="Site logo">
-        <svg class="nav-logo-icon" width="100" height="30">
-          <use href="{=$icon-path}"></use>
-        </svg>
-      </a>
-      <ul class="nav-list">
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-act}" href="./page-2.html">Page 2</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link {=$highlight-curr}" href="./page-3.html">Page 3</a>
-        </li>
-      </ul>
-    </nav>
+  <div class="header__container container">
+      <a href="#hero" class="header__logo logo">Neur-Data</a>
+
+      <nav class="header__nav nav">
+          <ul class="nav__list">
+              <li class="nav__item"><a href="#hero" class="nav__link">Главная</a></li>
+              <li class="nav__item"><a href="#method" class="nav__link">Методология</a></li>
+              <li class="nav__item"><a href="#consult" class="nav__link">Консультации</a></li>
+              <li class="nav__item"><a href="#results" class="nav__link">Результаты</a></li>
+              <li class="nav__item"><a href="#test" class="nav__link">Онлайн Тест</a></li>
+              <li class="nav__item"><a href="#contact" class="nav__link nav__link--cta button--small">Связаться</a></li>
+          </ul>
+      </nav>
+      <button class="header__burger" id="menuToggle" aria-label="Открыть меню">
+          <i data-lucide="menu"></i>
+      </button>
   </div>
 </header>
 
-
     <main>
       <!-- Loads the specified .html file -->
-      
+      <section class="hero" id="hero">
+  <canvas id="matrixCanvas" class="hero__canvas"></canvas>
+
+  <div class="hero__content container">
+      <h1 class="hero__title content-animate" data-animation="fade-in">
+        Карьерный Апгрейд:
+<span class="hero__highlight">инновации, меняющие вашу карьеру</span>
+      </h1>
+      <p class="hero__text content-animate" data-animation="fade-in">
+        Воплотите мечты в реальность с передовыми технологиями и нейроаналитикой.
+      <div class="hero__actions content-animate" data-animation="fade-in">
+          <a href="#contact" class="button button--primary">
+              Пройти регистрацию
+          </a>
+          <a href="#consult" class="button button--secondary">
+              Узнать детали
+          </a>
+      </div>
+  </div>
+</section>
+<section class="method" id="method">
+  <div class="method__container container">
+
+      <h2 class="method__heading content-animate" data-animation="top">
+          Наша Методология
+      </h2>
+      <p class="method__subtext content-animate" data-animation="top">
+        Мы используем аналитический подход, чтобы обучение было простым даже для новичков. Наш процесс чёткий, быстрый и эффективный.
+      </p>
+
+      <div class="method__steps">
+
+          <div class="method__item content-animate" data-animation="left">
+              <span class="method__step-number">01</span>
+              <h3 class="method__title">Нейро-Анализ Профиля</h3>
+              <p class="method__description">
+                Используем передовые алгоритмы для оценки ваших навыков и потенциала. Помогаем полностью понять ваши сильные стороны.
+              </p>
+          </div>
+
+          <div class="method__item content-animate" data-animation="top">
+              <span class="method__step-number">02</span>
+              <h3 class="method__title">Создание Индивидуальной Стратегии</h3>
+              <p class="method__description">
+                Разрабатываем пошаговый план карьерного роста, четко определяя необходимые шаги для вашего продвижения.
+            </p>
+          </div>
+
+          <div class="method__item content-animate" data-animation="right">
+              <span class="method__step-number">03</span>
+              <h3 class="method__title">Быстрый Старт и Действие</h3>
+              <p class="method__description">
+                Не теряйте время: подключение к нашей системе поддержки занимает всего несколько минут, и вы сразу начинаете действовать по плану.
+              </p>
+          </div>
+
+      </div>
+
+      <div class="method__footer content-animate" data-animation="bottom">
+          <a href="#contact" class="method__cta button button--primary">
+              Пройти опрос и получить стратегию
+          </a>
+      </div>
+
+  </div>
+</section>
+<section class="consult" id="consult">
+  <div class="consult__container container">
+
+      <h2 class="consult__heading content-animate" data-animation="top">
+          Пакеты Консультаций
+      </h2>
+      <p class="consult__subtext content-animate" data-animation="top">
+        Выберите свой план и расширьте возможности с помощью нейроаналитики.
+      </p>
+
+      <div class="consult__grid">
+
+          <div class="consult-card content-animate" data-animation="left" data-animation-delay="0">
+              <h3 class="consult-card__title">Базовый Аудит</h3>
+              <div class="consult-card__price">
+                  <span class="consult-card__price-value">£99</span>
+              </div>
+              <ul class="consult-card__features">
+                  <li><i data-lucide="check"></i> Нейро-оценка текущего резюме</li>
+                  <li><i data-lucide="check"></i> Бесплатная консультация по всем вопросам</li>
+                  <li><i data-lucide="check"></i> Базовая коррекция профиля</li>
+                  <li><i data-lucide="x" style="color: #FF4545;"></i> Глубокий анализ рынка</li>
+              </ul>
+              <a href="#contact" class="consult-card__cta button button--secondary">
+                  Узнать детали
+              </a>
+          </div>
+
+          <div class="consult-card consult-card--featured content-animate" data-animation="top" data-animation-delay="200">
+              <span class="consult-card__tag">Рекомендуем</span>
+              <h3 class="consult-card__title">Глубокий Анализ</h3>
+              <div class="consult-card__price">
+                  <span class="consult-card__price-value">£299</span>
+              </div>
+              <ul class="consult-card__features">
+                  <li><i data-lucide="check"></i> Полный нейро-анализ (90 минут)</li>
+                  <li><i data-lucide="check"></i> Индивидуальная стратегия роста</li>
+                  <li><i data-lucide="check"></i> Целевое редактирование CV</li>
+                  <li><i data-lucide="check"></i> Подготовка к интервью (симулятор)</li>
+              </ul>
+              <a href="#contact" class="consult-card__cta button button--primary">
+                  Пройти регистрацию
+              </a>
+          </div>
+
+          <div class="consult-card content-animate" data-animation="right" data-animation-delay="400">
+              <h3 class="consult-card__title">Полный Переход</h3>
+              <div class="consult-card__price">
+                  <span class="consult-card__price-value">£599</span>
+              </div>
+              <ul class="consult-card__features">
+                  <li><i data-lucide="check"></i> Все из пакета Анализ</li>
+                  <li><i data-lucide="check"></i> Годовая поддержка (чат)</li>
+                  <li><i data-lucide="check"></i> Помощь с офферами</li>
+                  <li><i data-lucide="check"></i> Проработка личного бренда</li>
+              </ul>
+              <a href="#contact" class="consult-card__cta button button--secondary">
+                  Узнать детали
+              </a>
+          </div>
+
+      </div>
+
+  </div>
+</section>
+<section class="results" id="results">
+  <div class="results__container container">
+
+      <h2 class="results__heading content-animate" data-animation="top">
+          Наши Результаты
+      </h2>
+      <p class="results__subtext content-animate" data-animation="top">
+        Мы помогаем превращать цели в реальные достижения. С помощью нашей инновационной технологии клиенты получают ощутимые преимущества.
+      </p>
+
+      <div class="results__grid">
+
+          <div class="metric-block content-animate" data-animation="left">
+              <span class="metric-block__value">+35%</span>
+              <p class="metric-block__label">Средний рост зарплаты</p>
+          </div>
+
+          <div class="metric-block content-animate" data-animation="top" data-animation-delay="200">
+              <span class="metric-block__value">90 Дней</span>
+              <p class="metric-block__label">Средний срок поиска новой работы</p>
+          </div>
+
+          <div class="metric-block content-animate" data-animation="right" data-animation-delay="400">
+              <span class="metric-block__value">98%</span>
+              <p class="metric-block__label">Удовлетворенность клиентов</p>
+          </div>
+
+      </div>
+
+  </div>
+</section>
+<section class="test" id="test">
+  <div class="test__container container">
+
+      <h2 class="test__heading content-animate" data-animation="top">
+        Время прокачать вашу карьеру!
+      </h2>
+      <p class="test__subtext content-animate" data-animation="top">
+        Пройдите наш Нейро-Аудит и откройте свой потенциал всего за 2 минуты. С Neur-Data разбираться просто — даже без опыта!
+      </p>
+
+      <div class="test__cta content-animate" data-animation="bottom">
+          <a href="#contact" class="test__button button button--primary pulsate-neon">
+              Начать Нейро-Тест (Бесплатно)
+              <i data-lucide="arrow-right"></i>
+          </a>
+      </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact__container container">
+      <h2 class="contact__heading content-animate" data-animation="top">
+          Готовы **Воплотите мечты в реальность**?
+      </h2>
+      <p class="contact__subtext content-animate" data-animation="top">
+          Получите **Бесплатная консультация по всем вопросам** от нашего **проверенный партнер**. Заполните форму для **онлайн регистрации**.
+      </p>
+
+      <form class="contact-form content-animate" data-animation="bottom" id="contactForm">
+          <div class="form-group">
+              <label for="contactName">Ваше Имя</label>
+              <input type="text" id="contactName" name="name" required placeholder="Имя">
+          </div>
+
+          <div class="form-group">
+              <label for="contactEmail">Email</label>
+              <input type="email" id="contactEmail" name="email" required placeholder="email@example.com">
+          </div>
+
+          <div class="form-group">
+              <label for="contactPhone">Номер Телефона</label>
+              <input type="tel" id="contactPhone" name="phone" required placeholder="+44 XXX XXX XXXX">
+          </div>
+
+          <div class="form-group captcha-group">
+              <label for="captchaInput">CAPTCHA: Решите пример</label>
+              <div class="captcha-box">
+                  <span id="captchaDisplay" class="captcha-box__display">1 + 1 = ?</span>
+                  <input type="text" id="captchaInput" name="captcha" required placeholder="Ваш ответ">
+              </div>
+              <p class="captcha-message" id="captchaMessage"></p>
+          </div>
+
+          <div class="form-group form-group--checkbox">
+              <input type="checkbox" id="policyAccept" name="policyAccept" required>
+              <label for="policyAccept" class="checkbox-label">
+                  Я согласен с <a href="terms.html">условиями использования</a> и <a href="privacy.html">политикой конфиденциальности</a>.
+              </label>
+          </div>
+
+          <button type="submit" class="button button--primary contact-form__button">
+              Пройти регистрацию
+          </button>
+
+          <div class="submission-message" id="submissionMessage" style="display: none;">
+              Спасибо! Ваш запрос принят. Мы скоро свяжемся с вами.
+          </div>
+      </form>
+
+  </div>
+</section>
     </main>
 
     <footer class="footer">
-  <div class="container">
-    <p class="footer-desc">
-      Made with ✨ by
-      <a
-        class="footer-link"
-        href="https://goit.global/ua/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        GoIT team
-      </a>
-    </p>
+  <div class="footer__container container">
+
+      <div class="footer__col footer__col--brand">
+          <a href="./#hero" class="footer__logo logo">Neur-Data</a>
+          <p class="footer__text">
+              **Технология нового поколения** для Вашего карьерного роста. Мы — **проверенный партнер**.
+          </p>
+          <p class="footer__legal-note">
+              *Предложение активно только в странах ЕС
+          </p>
+      </div>
+
+      <div class="footer__col footer__col--nav">
+          <h3 class="footer__heading">Навигация</h3>
+          <ul class="footer__list">
+              <li><a href="./#hero" class="footer__link">Главная</a></li>
+              <li><a href="./#method" class="footer__link">Методология</a></li>
+              <li><a href="./#consult" class="footer__link">Консультации</a></li>
+              <li><a href="./#results" class="footer__link">Результаты</a></li>
+              <li><a href="./#test" class="footer__link">Онлайн Тест</a></li>
+              <li><a href="./#contact" class="footer__link">Связаться</a></li>
+          </ul>
+      </div>
+
+      <div class="footer__col footer__col--legal">
+          <h3 class="footer__heading">Документы</h3>
+          <ul class="footer__list">
+              <li><a href="./privacy.html" class="footer__link">Политика конфиденциальности</a></li>
+              <li><a href="./cookies.html" class="footer__link">Политика Cookies</a></li>
+              <li><a href="./terms.html" class="footer__link">Условия использования</a></li>
+              <li><a href="./return.html" class="footer__link">Политика возврата</a></li>
+              <li><a href="./disclaimer.html" class="footer__link">Отказ от ответственности</a></li>
+              <li><a href="./personal-data-policy.html" class="footer__link">Политика обработки данных</a></li>
+          </ul>
+      </div>
+
+      <div class="footer__col footer__col--contacts">
+          <h3 class="footer__heading">Контакты</h3>
+          <ul class="footer__list">
+              <li class="footer__contact-item">
+                  <i data-lucide="phone"></i>
+                  <a href="tel:+442089456789" class="footer__link">+44 20 8945 6789</a>
+              </li>
+              <li class="footer__contact-item">
+                  <i data-lucide="mail"></i>
+                  <a href="mailto:career@neur-data.today" class="footer__link">career@neur-data.today</a>
+              </li>
+              <li class="footer__contact-item">
+                  <i data-lucide="map-pin"></i>
+                  <address class="footer__address">20 Fenchurch Street, London EC3M 3BY, UK</address>
+              </li>
+          </ul>
+      </div>
+  </div>
+
+  <div class="footer__bottom">
+      <p class="footer__copy">&copy; 2025 Neur-Data. Все права защищены. Платформа года.</p>
   </div>
 </footer>
-
-
+    <div class="cookie-popup is-hidden" id="cookiePopup">
+      <p class="cookie-popup__text">Этот сайт использует cookies для улучшения работы. Подробнее — в нашей <a href="cookies.html" class="cookie-popup__link">Cookie политике</a>.</p>
+      <button class="cookie-popup__button button--primary" id="acceptCookies">Принять</button>
+  </div>
+  <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+      // Инициализация Lucide Icons
+      lucide.createIcons();
+  </script>
   </body>
 </html>
