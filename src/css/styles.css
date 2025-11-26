@@ -21,8 +21,8 @@
     --space-xl: 6rem;
 
     /* Тень для неонового эффекта (ОСЛАБЛЕНО) */
-    --shadow-neon-sm: 0 0 2px var(--color-primary), 0 0 5px rgba(57, 255, 20, 0.4);
-    --shadow-neon-md: 0 0 7px var(--color-primary), 0 0 15px rgba(57, 255, 20, 0.6);
+    --shadow-neon-sm: 0 0 1px var(--color-primary), 0 0 5px rgba(57, 255, 20, 0.4);
+    --shadow-neon-md: 0 0 5px var(--color-primary), 0 0 15px rgba(57, 255, 20, 0.6);
 }
 
 /* Сброс стилей */
@@ -213,7 +213,9 @@ h1, h2, h3, h4 {
     border-color: var(--color-secondary);
     box-shadow: 0 0 5px var(--color-secondary);
 }
-
+.nav__link--cta:hover{
+  background-color: var(--color-primary);
+}
 .header__nav.is-open {
     display: block;
 }
@@ -299,6 +301,7 @@ h1, h2, h3, h4 {
 .footer__bottom {
     border-top: 1px solid rgba(57, 255, 20, 0.2);
     padding: 1rem var(--space-sm);
+    text-align: center;
 }
 
 .footer__copy {
@@ -404,6 +407,9 @@ h1, h2, h3, h4 {
 
 .cookie-popup__button {
     box-shadow: 0 0 5px var(--color-primary);
+    padding: 10px;
+    border-radius: 10px;
+    border:none
 }
 
 @media (min-width: 768px) {
