@@ -282,7 +282,9 @@ h1, h2, h3, h4 {
     color: var(--color-primary);
     text-shadow: var(--shadow-neon-sm);
 }
-
+.footer__list{
+    list-style-type: none;
+}
 .footer__link {
     color: var(--color-text);
     text-shadow: none;
